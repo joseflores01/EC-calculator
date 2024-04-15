@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Extra Credit Computation</title>
+</head>
+<body>
+    <p>Exam Extra Credit Calculator</p>
+    <label for="">Unit overall grade: </label>
+    <input type="number" name="Unit overall score" id="unit" required min="0" max="100"><br>
+    <label for="">Unit quiz grade: </label>
+    <input type="number" name="Unit quiz score" id="quiz" required min="0" max="110"><br>
+    <label for="">Exam grade: </label>
+    <input type="number" name="Exam score" id="exam" required min="0" max="100"><br><br>
+    <button onclick="calculateExtraCredit()">Calculate Extra credit </button>
+    <div>
+        <p id="extraCreditPoints"></p>
+    </div>
+    
+</body>
+<script>
+    function calculateExtraCredit() {
+
+        var unit = Number(document.getElementById("unit").value)
+        var quiz = Number(document.getElementById("quiz").value)
+        var exam = Number(document.getElementById("exam").value)
+
+        var extraCredit = Number(0);
+
+
+
+        if (isNaN(unit) || isNaN(quiz) || isNaN(exam) || unit < 0 || unit > 100 || exam < 0 || exam > 100 || quiz < 0 || quiz > 110) {
+            alert("Please enter valid numbers: Unit and Exam scores should be between 0 and 100, while Quiz score should be between 0 and 110.");
+            return;
+        }
+
+        extraCredit = (Number(((unit * 3 + quiz * 2) / 5) * exam / 100 * .16 * exam / 100))
+
+
+
+        var examResult = document.getElementById("extraCreditPoints")
+
+
+
+        var finalGrade =  Number(extraCredit + exam) 
+
+
+        if (finalGrade <= 105) {
+            examResult.innerHTML =   parseFloat(extraCredit.toFixed(2)) + " extra + " + exam + " exam " + " = " + parseFloat(finalGrade.toFixed(2))
+        }
+        else {
+            examResult.innerHTML =   parseFloat(extraCredit.toFixed(2)) + " extra + " + exam + " exam " + " = " + parseFloat(finalGrade.toFixed(2)) + " (max 105)"
+        }
+
+
+
+        // alert(extraCredit)
+    }
+
+</script>
+</html>
